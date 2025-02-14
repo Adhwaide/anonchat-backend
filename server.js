@@ -1,5 +1,9 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
+const port = process.env.PORT || 8080;
+const server = require('http').createServer();
+const wss = new WebSocket.Server({ server });
+server.listen(port, () => console.log(`WebSocket server running on port ${port}`));
+
 
 let waitingUser = null; // Store a user waiting to connect
 
